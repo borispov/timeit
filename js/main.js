@@ -29,7 +29,8 @@ const patientName       = document.querySelector("#patientName")
 const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
-const URL           = 'http://localhost:3000'
+const localhost     = 'http://localhost:3030'
+const URL           = 'http://46.101.156.51:3030'
 let monthElValue    = monthEl.value
 
 
@@ -65,7 +66,7 @@ const getDatesInMonth = (monthToShow = monthElValue) => {
 // Delete a table before drawing new table for different MONTH
 function clearTable() {
   const t = document.getElementById('initTable')
-  patientName.textContent = ''
+  patientName.value = ''
   root.removeChild(t)
 }
 
@@ -83,7 +84,7 @@ function drawTable(dates) {
 
 // Table Headers
 // exlucded Notes Column For Now
-const arrHead = ["Dates", "Begin", "End", "Head"]
+const arrHead = ["יום", "התחלה", "סיום", "הערות"]
 
 // Create Empty Table
 function createTable() {
@@ -177,13 +178,6 @@ function getTableData(selector) {
   return "" + tableData.join("\n")
 }
 
-// extract data using table's selector
-function export2csv() {
-  const data = getTableData("table tr")
-  const csvBlob = new Blob([data], { type: "text/csv;charset=utf-8;" })
-  return csvBlob
-}
-
 // Submit Helpers
 const fetchRequest = url => async (data) => await axios.post(url, data)
 const requestToMailService = fetchRequest(URL)
@@ -193,11 +187,11 @@ const getNames = () => [employeeName.value, patientName.value]
 function preSubmit() {
   const [employeeName, patientName] = getNames()
 
-  // if (isNOE(employeeName) || isNOE(patientName)) {
-  //   deleteEl("[role='alert']")
-  //   addWarningDiv(beforeSubDiv)
-  //   return
-  // }
+  if (isNOE(employeeName) || isNOE(patientName)) {
+    deleteEl("[role='alert']")
+    addWarningDiv(beforeSubDiv)
+    return
+  }
 
   $("#submitModal").modal()
 
@@ -205,7 +199,6 @@ function preSubmit() {
 
 
 async function handleSubmit() {
-  const file = export2csv()
   const filedata = getTableData("table tr")
   const trimmed = filedata.split("\n").filter(s=>s.length).join("\n")
 
@@ -222,28 +215,19 @@ async function handleSubmit() {
   const response = await requestToMailService(jsonData)
 
   if (response.status === 200) {
+    let dates = getDatesInMonth()
+    clearTable()
+    drawTable(dates)
     $("#submitModal").modal("hide")
     $("#successModal").modal()
-    drawTable()
   }
-
-  console.log(response.status)
+  
+  if (response.status !== 200) {
+    $("#submitModal").modal("hide")
+    $("#errorModal").modal()
+  }
  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -11,6 +11,9 @@ table select {
 
 tbody td { 
   direction: ltr !important;
+  overflow: hidden;
+  overflow: hidden !important;
+  /* white-space: nowrap !important; */
 }
 
 td {
