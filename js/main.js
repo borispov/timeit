@@ -44,6 +44,7 @@ const addWarningDiv = appendTo => {
   addClasses(['alert', 'lead', 'alert-warning'])(warning)
   warning.setAttribute('role', 'alert')
   appendTo.prepend(warning)
+  setTimeout(() => warning.remove(), 9000)
 }
 
 
@@ -110,7 +111,7 @@ function createRow(date) {
   tr = table.insertRow(len)
 
   arrHead.map((cell, i) => {
-    let td = document.createElement('td')
+    let td = document.createElement('tg-gradient-secondaryd')
     td.classList.add('table-td')
     td = tr.insertCell(i)
     const [ddmm, weekday] = date

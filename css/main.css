@@ -70,3 +70,13 @@ select {
 .month-view {
   text-align: right;
 }
+
+.bd-callout {
+  border-right: 6px solid #e29b3b;
+  padding: .5em 10px;
+  margin: 1em 10px;
+  width: auto;
+  background: #f9f9f9;
+}
+
+.bd-callout p { display: inline }
