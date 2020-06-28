@@ -1,0 +1,69 @@
+body {
+  direction: rtl;
+}
+
+table select {
+  text-align-last: center !important;
+  height: calc(.75em + .75rem + 1px) !important;
+}
+
+.submit-container { direction: rtl !important; text-align: right; margin-top: 50px; margin-bottom: 150px;}
+
+tbody td { 
+  direction: ltr !important;
+}
+
+td {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  width: fit-content !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+@media screen and (min-width: 601px) {
+  table {
+    margin: 0 auto;
+    width: available !important;
+  }
+}
+
+table td {
+  text-align: center;
+}
+
+tr {
+  width: 70px !important;
+}
+
+.table-th, .table-td {
+  width: fit-content !important;
+  height: 50px !important;
+  text-align: center !important;
+}
+
+.hour {
+  width: 50px !important;
+  padding: 0px 4px !important;
+  text-align: center !important;
+}
+
+
+select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background: #f3a9a9 !important;
+  border: 1px solid #f3a9a9 !important;
+  font-size: 0.9rem !important;
+  padding: 0 .35em !important;
+}
+
+.header {
+  text-align: right;
+}
+
+.month-view {
+  text-align: right;
+}

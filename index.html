@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>נתן - טבלת מילוי שעות עבודה</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <style>
+      body {
+        direction: rtl;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="jumbotron">
+      <div style="direction: rtl;" class="container">
+
+        <!-- Welcome Message  -->
+        <div style="text-align: center; padding-top: 50px;">
+          <h1>שלום רב!</h1>
+          <h5 >אנא, מלאו טופס שעות זה בדיוק רב</h5>
+        </div>
+        <!-- END -->
+
+        <form>
+
+          <!-- NAMEs -->
+          <div class="form-group text-right mt-5">
+            <div class="col-4">
+              <label style="text-align: right;" for="formGroupExampleInput">שם העובד</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="formGroupExampleInput" 
+                placeholder="מיכל לוי">
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <div class="col-4">
+              <label for="formGroupExampleInput2">שם המטופל</label>
+              <input 
+              type="text" 
+              class="form-control" 
+              id="formGroupExampleInput2" 
+              placeholder="שם מלא של המטופל">
+            </div>
+          </div>
+          <!-- END OF NAMES -->
+
+          <div class="card">
+            <h3 class="card-header text-center font-weight-bold text-uppercase py-1">לוח זמנים</h3>
+
+            <div class="card-body">
+              <div id="table" class="table-editable">
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</html>
