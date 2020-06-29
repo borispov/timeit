@@ -5,9 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" /> -->
 
-  <!-- <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384&#45;vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous"> -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
 
     <title>נתן - טבלת מילוי שעות עבודה</title>
 
@@ -24,15 +25,15 @@
 
   <body>
 
-    <div class="container" style="direction: rtl; margin-top: 100px;">
+    <div class="container" style="margin-top: 100px;">
 
-      <img class="img ml-auto  d-block" src="https://nathan.co.il/wp-content/uploads/2015/02/123.png" alt="nathan logo" />
+      <img class="img d-block" src="https://nathan.co.il/wp-content/uploads/2015/02/123.png" alt="nathan logo" />
       <h1 class="header col-md-6"> טופס מילוי שעות עבודה </h1>
       
       <hr />
 
       <h4 class="pr-4 header mt-5">הוראות</h4>
-      <ol class="text-right p-5">
+      <ol class="p-5">
         <li>להקפיד להזין את שעת תחילת העבודה ושעת סיום העבודה במשבצות הנכונות.</li>
         <li><mark>יש לעבור על הטופס לפני שליחתו</mark></li>
         <li>אין לשלוח טופס פעמיים עבור מתמודד</li>
@@ -41,7 +42,7 @@
         <li>יש לציין בהערות אם הפגישה בוטלה 24 שעות לפני מועד הפגישה</li>
       </ol>
 
-      <p class="blockquote lead font-weight-bold text-right px-3" > הטופס עבור חודש יולי</p>
+      <p class="blockquote lead font-weight-bold px-3" > הטופס עבור חודש יולי</p>
       <div class="month-view form-inline p-2 d-none">
         <label class="month-view px-2" for="chosen-month" >עבור חודש</label>
         <select class="bg-light custom-select w-auto px-3 py-1 font-weight-bold" name="view-month" id="view-month">
@@ -49,7 +50,7 @@
         </select>
       </div>
 
-      <div class="names container text-right mt-4 form-group">
+      <div class="names container mt-4 form-group">
         <div class="form-row">
           <div class="col-md-4">
             <label for="employeeName"> שם העובד</label>
@@ -72,7 +73,7 @@
 
       <!-- SUBMIT DATA -->
       <div class="container mx-auto mb-5 mt-2" data-type="before-sub">
-        <p class="bd-callout mx-auto w-50 text-xl-right lead d-block">
+        <p class="bd-callout mx-auto col-md-6 col-sm-12 text-xl lead d-block">
         <mark class="bg-warning rounded">תזכורת</mark>: יש לעבור על הטופס, לתקן שגיאות טרם שליחתו. בדקו פעמיים לפני שליחה
         </p>
 
@@ -93,7 +94,7 @@
                   <footer class="blockquote-footer">נתקלתם בבעיה? אנא, תפנו לרכז. <cite title="Source Title">- חברת נתן</cite></footer>
                 </blockquote>
               </div>
-              <div class"modal-footer mb-5">
+              <div class="modal-footer d-block text-center mx-auto" style="width: 200px">
                 <button type="button" class="btn btn-info mb-5" data-dismiss="modal">חזור</button>
                 <button data-type="submit-btn" type="button" class="btn btn-danger mb-5">לשלוח טופס</button>
               </div>

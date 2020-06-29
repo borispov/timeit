@@ -30,7 +30,7 @@ const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-const URL           = 'http://46.101.156.51:3030'
+const URL           = 'https://46.101.156.51:3030'
 let monthElValue    = monthEl.value
 
 
@@ -221,12 +221,12 @@ async function handleSubmit() {
     drawTable(dates)
     $("#submitModal").modal("hide")
     $("#successModal").modal()
+    return
   }
   
-  if (response.status !== 200) {
-    $("#submitModal").modal("hide")
-    $("#errorModal").modal()
-  }
+  // if error
+  $("#submitModal").modal("hide")
+  $("#errorModal").modal()
  
 }
 
