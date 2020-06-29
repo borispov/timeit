@@ -242,7 +242,6 @@ async function handleSubmit() {
 setTimeout( () => {
   document.querySelectorAll('.hour')
     .forEach(a => a.addEventListener('change', () => {
-      console.log(a.value)
       if (!a.value) return a.parentElement.lastChild.value = a.value
       a.parentElement.lastChild.value = 0
     }))
