@@ -30,12 +30,11 @@ const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-const URL           = 'https://nathan.borisky.me'
+const URL           = 'https://nathan.borisky.me:3030'
 let monthElValue    = monthEl.value
 
 
 //  -- METHODS! --
-
 const deleteEl = sel => getSel(sel) && getSel(sel).remove()
 
 const addWarningDiv = appendTo => {
