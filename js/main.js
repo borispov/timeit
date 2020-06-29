@@ -206,6 +206,12 @@ async function handleSubmit() {
   const [employeeName, patientName] = getNames()
   const filename = `${employeeName}--${patientName} month-${monthEl.value}.csv`
 
+  if (isNOE(employeeName) || isNOE(patientName)) {
+    deleteEl("[role='alert']")
+    addWarningDiv(beforeSubDiv)
+    return
+  }
+
   const jsonData = { 
     filedata: trimmed,
     filename,
@@ -223,8 +229,8 @@ async function handleSubmit() {
     $("#successModal").modal()
     return
   }
-  
-  // if error
+  // POPUP THE ERROR MODAL
+  // DOES NOT WORK.
   $("#submitModal").modal("hide")
   $("#errorModal").modal()
  
