@@ -30,7 +30,7 @@ const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-const URL           = 'https://46.101.156.51:3030'
+const URL           = 'https://nathan.borisky.me'
 let monthElValue    = monthEl.value
 
 
