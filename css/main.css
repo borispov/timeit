@@ -57,10 +57,13 @@ tr {
 select {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
-  background: #f3a9a9 !important;
-  border: 1px solid #f3a9a9 !important;
+  background: #fafafa !important;
+  outline: none;
+  font-weight: 700 !important;
+  border: 1px solid #020202 !important;
   font-size: 0.9rem !important;
   padding: 0 .35em !important;
+  color: #313131 !important;
 }
 
 .header {

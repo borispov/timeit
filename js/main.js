@@ -17,6 +17,7 @@ const createEl          = node => document.createElement(node)
 const createDiv         = () => createEl('div')
 const setHTML           = v => el => el.innerHTML = v
 const getSel            = sel => document.querySelector(sel)
+const addYearToDate     = dateStr => dateStr + '/' + new Date().getFullYear()
 
 
 // SELECTORS
@@ -30,7 +31,7 @@ const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-const URL           = 'https://nathan.borisky.me'
+const API           = 'https://nathan.borisky.me'
 let monthElValue    = monthEl.value
 
 
@@ -110,7 +111,7 @@ function createRow(date) {
   tr = table.insertRow(len)
 
   arrHead.map((cell, i) => {
-    let td = document.createElement('tg-gradient-secondaryd')
+    let td = document.createElement('bg-gradient-secondary')
     td.classList.add('table-td')
     td = tr.insertCell(i)
     const [ddmm, weekday] = date
@@ -123,7 +124,6 @@ function createRow(date) {
         td.setAttribute('contenteditable', 'true')
     } 
     else {
-
       const inputAttributes = [ 
           ["name", "datetime"], 
           ["placeholder", "__:__"], 
@@ -154,7 +154,9 @@ function createRow(date) {
 
 // POPULATE DATA
 function extractTd(col, i) {
-  if (i === 0) return col.innerText.split('\n')[0]
+  if (i === 0) { 
+    return addYearToDate(col.innerText.split('\n')[0])
+  }
   if (col.childElementCount) {
     let value = col.firstChild && col.firstChild.textContent
     return value === "שעה" || value === "דקות" ? "" : col.firstChild.value
@@ -180,7 +182,7 @@ function getTableData(selector) {
 
 // Submit Helpers
 const fetchRequest = url => async (data) => await axios.post(url, data)
-const requestToMailService = fetchRequest(URL)
+const requestToMailService = fetchRequest(API)
 
 const getNames = () => [employeeName.value, patientName.value]
 
