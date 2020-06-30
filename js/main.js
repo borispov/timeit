@@ -109,10 +109,10 @@ function createRow(date) {
   const table = document.getElementById('initTable')
   const len = table.rows.length
   let tr = table.insertRow(len)
-  tr = table.insertRow(len)
+  // tr = table.insertRow(len)
 
   arrHead.map((cell, i) => {
-    let td = document.createElement('bg-gradient-secondary')
+    let td = document.createElement('td')
     td.classList.add('table-td')
     td = tr.insertCell(i)
     const [ddmm, weekday] = date
@@ -155,7 +155,7 @@ function createRow(date) {
 
 // POPULATE DATA
 function extractTd(col, i) {
-  if (i === 0) { 
+  if (i === 0 && col.innerText !== 'יום') { 
     return addYearToDate(col.innerText.split('\n')[0])
   }
   if (col.childElementCount) {
@@ -183,7 +183,7 @@ function getTableData(selector) {
 
 // Submit Helpers
 const fetchRequest = url => async (data) => await axios.post(url, data)
-const requestToMailService = fetchRequest(API)
+const requestToMailService = fetchRequest(localhost)
 
 const getNames = () => [employeeName.value, patientName.value]
 
