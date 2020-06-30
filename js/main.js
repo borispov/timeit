@@ -1,5 +1,5 @@
 // UTILS 
-const isZero = i => !i
+const isZero            = i => i === 0 ? true : false
 const isEq              = a => b => a === b
 const addDayToDate      = date => date.setDate(date.getDate() + 1)
 const formatToDDMMYY    = date => date.toLocaleString('he-il').split(',')[0]
@@ -79,6 +79,7 @@ function drawTable(dates) {
     () => {
       const tableSelects = document.querySelectorAll('select')
       tableSelects.forEach(a => a.classList.add('custom-select'))
+      setTimeout( () => { addTimeListeners() }, 100)
     }, 0)
 }
 
@@ -240,13 +241,13 @@ async function handleSubmit() {
 
 
 // _______ EVENT LISTENERS ________
-setTimeout( () => {
+function addTimeListeners() {
   document.querySelectorAll('.hour')
     .forEach(a => a.addEventListener('change', () => {
       if (!a.value) return a.parentElement.lastChild.value = a.value
       a.parentElement.lastChild.value = 0
     }))
-}, 100)
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
