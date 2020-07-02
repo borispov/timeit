@@ -183,7 +183,7 @@ function getTableData(selector) {
 
 // Submit Helpers
 const fetchRequest = url => async (data) => await axios.post(url, data)
-const requestToMailService = fetchRequest(localhost)
+const requestToMailService = fetchRequest(API)
 
 const getNames = () => [employeeName.value, patientName.value]
 
@@ -206,7 +206,7 @@ async function handleSubmit() {
   const trimmed = filedata.split("\n").filter(s=>s.length).join("\n")
 
   const [employeeName, patientName] = getNames()
-  const filename = `${employeeName}--${patientName} month-${monthEl.value}.csv`
+  const filename = `${employeeName}_${patientName}_${monthEl.value}.csv`
 
   if (isNOE(employeeName) || isNOE(patientName)) {
     deleteEl("[role='alert']")
@@ -218,7 +218,8 @@ async function handleSubmit() {
     filedata: trimmed,
     filename,
     employeeName,
-    patientName
+    patientName,
+    month: monthEl.value
   }
 
   const response = await requestToMailService(jsonData)
