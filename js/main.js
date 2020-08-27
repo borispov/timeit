@@ -31,7 +31,8 @@ const employeeName      = document.querySelector("#employeeName")
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-const API           = 'https://nathan.borisky.me'
+// const API           = 'https://nathan.borisky.me'
+const API           = 'http://46.101.156.51:3030'
 let monthElValue    = monthEl.value
 
 
