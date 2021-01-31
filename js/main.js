@@ -62,7 +62,7 @@ const generateDateRange = date => month => initialList => {
 const createDatesList = month => year => generateDateRange(new Date(year, month, 1))(month)([])
 const getDatesInMonth = (monthToShow = monthElValue) => {
   const monthToFill = monthNames.indexOf(monthToShow)
-  return createDatesList(monthToFill)(2020)
+  return createDatesList(monthToFill)(2021)
 }
 
 // Delete a table before drawing new table for different MONTH
