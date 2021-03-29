@@ -234,7 +234,7 @@
                 h24 = this.options.template.indexOf('H') !== -1,
                 twoDigit = this.options.template.toLowerCase().indexOf('hh') !== -1,
                 min = h12 ? 1 : 8, 
-                max = h12 ? 12 : 19;
+                max = h12 ? 12 : 21;
                 
             for(i=min; i<=max; i++) {
                 name = twoDigit ? this.leadZero(i) : i;
