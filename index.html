@@ -43,12 +43,10 @@
         <li>אם לקחתם חופש - תמלאו את שעות העבודה כרגיל ובהערות לציין ״חופשה״</li>
       </ol>
 
-      <p class="blockquote lead font-weight-bold px-3"> הטופס עבור חודש אפריל</p>
-      <div class="month-view form-inline p-2 d-none">
-        <label class="month-view px-2" for="chosen-month">עבור חודש</label>
-        <select class="bg-light custom-select w-auto px-3 py-1 font-weight-bold" name="view-month" id="view-month">
-          <option value="April">אפריל</option>
-        </select>
+      <div class="blockquote lead font-weight-bold px-3">
+        <span class="inline"> הטופס עבור חודש </span>
+        <span id="month-select" class="d-inline">
+        </span>
       </div>
 
       <div class="names container mt-4 form-group">
@@ -125,9 +123,9 @@
                 <h5 class="modal-title text-center" id="exampleModalLongTitle">אירעה שגיאה!</h5>
               </div>
                 <blockquote class="blockquote">
-                  <p class="mb-0">אירעה שגיאות, אנא נסה שנית מאוחר יותר. נא לפנות לרכז במידה והבעיה ממשיכה</p>
+                  <p class="mb-0 text-center">אירעה שגיאה, אנא נסו פעם נוספת בעוד חמש דקות. אם הבעיה ממשיכה, אנא תפנו לרכז.</p>
                 </blockquote>
-              <div class"modal-footer mb-5">
+              <div class"modal-footer mb-5 text-center">
                 <button type="button" class="btn btn-info mb-2 mt-4" data-dismiss="modal">אישור</button>
               </div>
             </div>

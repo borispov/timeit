@@ -21,19 +21,21 @@ const addYearToDate     = dateStr => dateStr + '/' + new Date().getFullYear()
 
 
 // SELECTORS
-const monthEl           = document.getElementById('view-month')
 const root              = document.getElementById('root')
 const submitBtn         = document.querySelector("[data-type='submit-btn']")
 const preSubmitBtn      = document.querySelector("[data-type='pre-submit-btn']")
 const beforeSubDiv      = document.querySelector("[data-type='before-sub']")
 const patientName       = document.querySelector("#patientName")
 const employeeName      = document.querySelector("#employeeName")
+const monthSelect       = document.querySelector("#month-select")
+
+const getMonthEl        = () => document.getElementById("month");
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
 // const API           = 'https://nathan.borisky.me'
 const API           = 'https://nathan.rispov.com'
-let monthElValue    = monthEl.value
+const hebMonths     = [ "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
 
 
 //  -- METHODS! --
@@ -60,8 +62,10 @@ const generateDateRange = date => month => initialList => {
 }
 
 const createDatesList = month => year => generateDateRange(new Date(year, month, 1))(month)([])
-const getDatesInMonth = (monthToShow = monthElValue) => {
-  const monthToFill = monthNames.indexOf(monthToShow)
+const getDatesInMonth = (month) => {
+  const m = monthMatch()
+  const monthToFill = monthNames.indexOf(month || m)
+  console.log(monthToFill)
   return createDatesList(monthToFill)(2021)
 }
 
@@ -207,7 +211,9 @@ async function handleSubmit() {
   const trimmed = filedata.split("\n").filter(s=>s.length).join("\n")
 
   const [employeeName, patientName] = getNames()
-  const filename = `${employeeName}_${patientName}_${monthEl.value}.csv`
+  const monthEl = document.getElementById('month')
+  const month = monthEl.value
+  const filename = `${employeeName}_${patientName}_${month}.csv`
 
   if (isNOE(employeeName) || isNOE(patientName)) {
     deleteEl("[role='alert']")
@@ -220,7 +226,7 @@ async function handleSubmit() {
     filename,
     employeeName,
     patientName,
-    month: monthEl.value
+    month
   }
 
   const response = await requestToMailService(jsonData)
@@ -232,14 +238,59 @@ async function handleSubmit() {
     $("#submitModal").modal("hide")
     $("#successModal").modal()
     return
+  } else {
+      console.log(response.status)
+      // POPUP THE ERROR MODAL
+      // DOES NOT WORK.
+      $("#submitModal").modal("hide")
+      $("#errorModal").modal()
   }
-  // POPUP THE ERROR MODAL
-  // DOES NOT WORK.
-  $("#submitModal").modal("hide")
-  $("#errorModal").modal()
- 
 }
 
+// closest month
+function monthMatch() {
+  let date = new Date()
+  let dayOfMonth = date.getDate()
+  return dayOfMonth > 26 && monthNames[date.getMonth()]
+    || dayOfMonth < 10 && monthNames[date.getMonth() -1]
+    || monthNames[date.getMonth()]
+}
+
+
+//    - - - POPULATE MONTH SELECTION - - - - //
+function addMonthSelect() {
+  const defaultMonth = monthMatch()
+  const selectElement = document.createElement("select")
+  const curIdx = monthNames.indexOf(defaultMonth)
+  selectElement.setAttribute('id', 'month')
+  selectElement.setAttribute('selected', defaultMonth)
+  addClasses([
+    "bg-light", 
+    "custom-select", 
+    "w-auto", 
+    "px-3", 
+    "py-1", 
+    "font-weight-bold"
+  ])(selectElement)
+
+  // iterate over months and render only current and next month.
+  hebMonths.map((m, i) => {
+    if ( i < curIdx || i - 1 > curIdx ) return
+    let opt = document.createElement("option")
+    setHTML(m)(opt)
+    opt.setAttribute('value', monthNames[i])
+    if (monthNames[i] == defaultMonth) { selectElement.prepend(opt)} 
+    else { selectElement.append(opt) }
+  })
+  // Event Listener for select dropdown.
+  selectElement.addEventListener('change', () => {
+    let newValue = getMonthEl().value
+    let dates = getDatesInMonth(newValue)
+    clearTable()
+    drawTable(dates)
+  })
+  monthSelect.append(selectElement)
+}
 
 
 // _______ EVENT LISTENERS ________
@@ -255,12 +306,7 @@ function addTimeListeners() {
 document.addEventListener("DOMContentLoaded", function() {
   let dates = getDatesInMonth()
   drawTable(dates)
-})
-
-monthEl.addEventListener('change', e => {
-  let dates = getDatesInMonth(monthElValue)
-  clearTable()
-  drawTable(dates)
+  addMonthSelect()
 })
 
 submitBtn.addEventListener("click", handleSubmit)
