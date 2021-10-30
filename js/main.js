@@ -33,8 +33,8 @@ const getMonthEl        = () => document.getElementById("month");
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-// const API           = 'https://nathan.rispov.com/report'
-const API           = 'http://localhost:8888/report'
+const API           = 'https://nathan.rispov.com/report'
+// const API           = 'http://localhost:8888/report'
 const hebMonths     = [ "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
 
 
