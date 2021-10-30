@@ -3,7 +3,6 @@ const isZero            = i => i === 0 ? true : false
 const isEq              = a => b => a === b
 const addDayToDate      = date => date.setDate(date.getDate() + 1)
 const formatToDDMMYY    = date => date.toLocaleString('he-il').split(',')[0]
-const formatToDDMM      = date => date.toLocaleString('he-il').split(',')[0]
 const stripYear         = dateStr => dateStr.split('.').slice(0, -1).join('/')
 const extractDay        = date => dayNames[new Date(date).getDay()]
 const dayNames          = ["יום א׳", "יום ב׳", "יום ג׳", "יום ד׳", "יום ה׳", "יום ו׳", "שבת"]
@@ -27,15 +26,15 @@ const preSubmitBtn      = document.querySelector("[data-type='pre-submit-btn']")
 const beforeSubDiv      = document.querySelector("[data-type='before-sub']")
 const patientName       = document.querySelector("#patientName")
 const employeeName      = document.querySelector("#employeeName")
+const employeeId        = document.querySelector("#employeeId")
 const monthSelect       = document.querySelector("#month-select")
 
 const getMonthEl        = () => document.getElementById("month");
 
 // VARIABLES - CONSTANTS
 const localhost     = 'http://localhost:3030'
-// const API           = 'https://nathan.borisky.me'
-const API           = 'https://pashutyafe.com'
-const oldAPI        = 'https://nathan.rispov.com'
+// const API           = 'https://nathan.rispov.com/report'
+const API           = 'http://localhost:8888/report'
 const hebMonths     = [ "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
 
 
@@ -191,10 +190,10 @@ function getTableData(selector) {
 const fetchRequest = url => async (data) => await axios.post(url, data)
 const requestToMailService = fetchRequest(API)
 
-const getNames = () => [employeeName.value, patientName.value]
+const getNames = () => [employeeName.value, patientName.value, employeeId.value]
 
 function preSubmit() {
-  const [employeeName, patientName] = getNames()
+  const [employeeName, patientName, employeeId] = getNames()
 
   if (isNOE(employeeName) || isNOE(patientName)) {
     deleteEl("[role='alert']")
@@ -211,7 +210,7 @@ async function handleSubmit() {
   const filedata = getTableData("table tr")
   const trimmed = filedata.split("\n").filter(s=>s.length).join("\n")
 
-  const [employeeName, patientName] = getNames()
+  const [employeeName, patientName, employeeId] = getNames()
   const monthEl = document.getElementById('month')
   const month = monthEl.value
   const filename = `${employeeName}_${patientName}_${month}.csv`
@@ -223,12 +222,14 @@ async function handleSubmit() {
   }
 
   const jsonData = { 
-    filedata: trimmed,
-    filename,
-    employeeName,
+    // 'csvData': trimmed,
+    // filename,
+    'employeeName': 'Lolik',
     patientName,
     month
   }
+
+  console.log(`שולח את המידע: ${JSON.stringify(jsonData)}`)
 
   const response = await requestToMailService(jsonData)
 
