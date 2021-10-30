@@ -222,9 +222,9 @@ async function handleSubmit() {
   }
 
   const jsonData = { 
-    // 'csvData': trimmed,
+    csvData: trimmed,
     // filename,
-    'employeeName': 'Lolik',
+    employeeName,
     patientName,
     month
   }
